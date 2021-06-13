@@ -1,6 +1,6 @@
 .card-style{
   padding: 0;
-  margin: 10px;
+  margin:  0 10px 10px 10px ;
 }
 .bold{
   font-weight: bold;
@@ -10,4 +10,7 @@
     width: 90%;
     margin: 15px auto 15px auto;
     background: #e0e0e0;
+}
+.card-body {
+  display: grid;
 }

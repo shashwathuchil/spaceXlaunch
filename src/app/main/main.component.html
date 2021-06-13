@@ -1,33 +1,45 @@
-<div class="row">
-  <div class="col-sm-12 col-md-4 col-xl-4" *ngFor="let launch of this.filData.allLaunches" >
-<div class="card card-style" style="max-width:20rem">
-  <img class="card-img-top" [defaultImage]="launch.links.mission_patch_small" [lazyLoad]="launch.links.mission_patch" [useSrcset]="true" alt="Card image cap"/>
-  <div class="card-body">
-    <h5 class="card-title">{{launch.mission_name}}</h5>
-    <div *ngIf="launch.mission_id.length">
-      <span class="bold">Mission id's:</span>
-      <ul>
-        <li  *ngFor="let id of launch.mission_id">
-          {{id}}
-        </li>
-      </ul>
-    </div>
-    <div>
-      <span class="bold">Launch Year:</span> {{launch.launch_year}}
-    </div>
-    <div *ngIf="!launch?.launch_failure_details">
-      <span class="bold">Successful Launch:</span> True
-    </div>
-    <div *ngIf="launch?.launch_failure_details">
-      <span class="bold">Successful Launch:</span> False
-    </div>
-    <div *ngIf="launch?.rocket?.first_stage?.cores[0]?.land_success">
-      <span class="bold">Successful Landing:</span> True
-    </div>
-    <div *ngIf="!launch?.rocket?.first_stage?.cores[0]?.land_success">
-      <span class="bold">Successful Landing:</span> False
+<div class="row" *ngIf="this.filData.allLaunches.length">
+  <div
+    class="col-sm-12 col-md-4 col-xl-4"
+    *ngFor="let launch of this.filData.allLaunches"
+  >
+    <div class="card card-style" style="max-width: 20rem; height: 560px">
+      <img
+        class="card-img-top"
+        [defaultImage]="launch.links.mission_patch_small"
+        [lazyLoad]="launch.links.mission_patch"
+        [useSrcset]="true"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ launch.mission_name }}</h5>
+        <div *ngIf="launch.mission_id.length">
+          <span class="bold">Mission id's:</span>
+          <ul>
+            <li *ngFor="let id of launch.mission_id">
+              {{ id }}
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span class="bold">Launch Year:</span> {{ launch.launch_year }}
+        </div>
+        <div *ngIf="!launch?.launch_failure_details">
+          <span class="bold">Successful Launch:</span> True
+        </div>
+        <div *ngIf="launch?.launch_failure_details">
+          <span class="bold">Successful Launch:</span> False
+        </div>
+        <div *ngIf="launch?.rocket?.first_stage?.cores[0]?.land_success">
+          <span class="bold">Successful Landing:</span> True
+        </div>
+        <div *ngIf="!launch?.rocket?.first_stage?.cores[0]?.land_success">
+          <span class="bold">Successful Landing:</span> False
+        </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
+<div *ngIf="!this.filData.allLaunches.length">
+
 </div>

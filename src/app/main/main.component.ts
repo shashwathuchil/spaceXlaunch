@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.dataSvc.get(this.url.GET_ALL).subscribe(data=>{
+    this.dataSvc.get(this.url.GET_ALL).subscribe((data:any)=>{
       console.log(data);
       this.allLaunches = data
       this.filData.allLaunches = data
