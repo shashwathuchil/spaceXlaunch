@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FilterDataService } from "../services/filter-data.service";
 import { DataService } from "../services/data.service";
 import { UrlService } from "../services/url.service";
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-side-bar',
@@ -36,16 +35,21 @@ export class SideBarComponent implements OnInit {
   }
   filterLand(status) {
     this.filData.landStatus = status;
+    this.filterDataCall();
   }
   getUrl() {
-    if (this.filData.activeYear === "" && (this.filData.launchStatus || !this.filData.launchStatus)) {
-      return this.urlSvc.GET_FILTER_LAUNCH + String(this.filData.launchStatus);
-    } else if (this.filData.activeYear === "" && (this.filData.landStatus || !this.filData.landStatus)) {
-      return this.urlSvc.GET_FILTER_LAND + String(this.filData.landStatus);
-    } else if (this.filData.activeYear !== "") {
+    if (this.filData.activeYear !== "" && this.filData.launchStatus !== undefined && this.filData.landStatus !== undefined) {
       return this.urlSvc.GET_FILTER_YEAR + "launch_success=" + this.filData.launchStatus + "&land_success=" + this.filData.landStatus + "&launch_year=" + String(this.filData.activeYear);
-    }
+    } else if (this.filData.activeYear !== "" && this.filData.launchStatus === undefined && this.filData.landStatus === undefined) {
+      return this.urlSvc.GET_FILTER_YEAR + "&launch_year=" + String(this.filData.activeYear)
+    } else if (this.filData.activeYear === "" && (this.filData.launchStatus || !this.filData.launchStatus)) {
+      return this.urlSvc.GET_FILTER_LAUNCH + String(Boolean(this.filData.launchStatus));
+    } else if (this.filData.activeYear === "" && (this.filData.landStatus || !this.filData.landStatus)) {
+      return this.urlSvc.GET_FILTER_LAND + String(Boolean(this.filData.landStatus));
+    } else{
+      return this.urlSvc.GET_FILTER_YEAR + "launch_success=" + String(Boolean(this.filData.launchStatus)) + "&land_success=" + String(Boolean(this.filData.landStatus)) + "&launch_year=" + String(this.filData.activeYear);
 
+    }
   }
 
   filterDataCall() {
