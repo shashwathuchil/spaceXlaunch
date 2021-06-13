@@ -1,1 +1,44 @@
-<p>side-bar works!</p>
+<div class="m-auto">
+  <div class="card card-style" style="max-width:20rem">
+    <!-- <img class="card-img-top" [defaultImage]="launch.links.mission_patch_small" [lazyLoad]="launch.links.mission_patch" [useSrcset]="true" alt="Card image cap"/> -->
+    <div class="card-body">
+      <!-- <h5 class="card-title">{{launch.mission_name}}</h5> -->
+      <div class="filter-text">
+        Filters
+      </div>
+      <div class="under-lined text-center m-b-10">
+        Launch year
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-6 text-center btn-style m-b-10" *ngFor="let year of this.filData.filterYear">
+            <button class="btn btn-primary" [ngClass]="{'active': this.filData.activeYear===year}" (click)="filterYear(year)">{{year}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="under-lined text-center m-b-10">
+        Successful Launch
+      </div>
+      <div class="row">
+        <div class="col-6 text-center btn-style m-b-10">
+          <button class="btn btn-primary" [ngClass]="{'active': this.filData.launchStatus=== true}" (click)="filterLaunch(true)">True</button>
+        </div>
+        <div class="col-6 text-center btn-style m-b-10">
+          <button class="btn btn-primary" [ngClass]="{'active': this.filData.launchStatus=== false}" (click)="filterLaunch(false)">False</button>
+        </div>
+      </div>
+
+      <div class="under-lined text-center m-b-10">
+        Successful Landing
+      </div>
+      <div class="row">
+        <div class="col-6 text-center btn-style m-b-10">
+          <button class="btn btn-primary" [ngClass]="{'active': this.filData.landStatus=== true}" (click)="filterLand(true)">True</button>
+        </div>
+        <div class="col-6 text-center btn-style m-b-10">
+          <button class="btn btn-primary" [ngClass]="{'active': this.filData.landStatus=== false}" (click)="filterLand(false)">False</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>

@@ -1,4 +1,13 @@
 .card-style{
-  padding: 5px 0 5px 0;
-  margin: 5px;
+  padding: 0;
+  margin: 10px;
+}
+.bold{
+  font-weight: bold;
+}
+.card-img, .card-img-bottom, .card-img-top {
+    flex-shrink: 0;
+    width: 90%;
+    margin: 15px auto 15px auto;
+    background: #e0e0e0;
 }
